@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {HelloService} from '../services/hello.service';
+import {TodoItem} from '../model/todo.item';
 
 @Component({
   selector: 'hello',
@@ -8,7 +9,7 @@ import {HelloService} from '../services/hello.service';
 })
 export class HelloComponent implements OnInit {
 
-  text: string = 'text';
+  title: string = 'text';
 
   constructor(private helloService: HelloService) { }
 
@@ -17,10 +18,17 @@ export class HelloComponent implements OnInit {
   }
 
   addTodo(): void {
-    this.helloService.addTodo(this.text);
+    this.helloService.lastId++;
+    this.helloService.addTodo(new TodoItem(this.helloService.lastId, this.title));
   }
-  getTodo(): string[] {
+
+  getTodo():  TodoItem[] {
     return this.helloService.getTodo();
+  }
+
+  del(id:number) {
+    this.helloService.del(id);
+    console.log('HelloComponent.del() аргумент id='+id)
   }
 
   ngOnInit(): void {

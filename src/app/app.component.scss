@@ -19,6 +19,9 @@ body, input[type="text"], button {
 * {
   font-family: Arial, Helvetica, sans-serif;
 }
+.list {
+text-align: center;
+}
 button.add {
   font-family: Arial;
   background-color: #eee;
@@ -26,5 +29,4 @@ button.add {
   padding: 5px 10px;
   border-radius: 4px;
   cursor: pointer;
-  cursor: hand;
 }
