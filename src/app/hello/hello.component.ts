@@ -31,6 +31,7 @@ export class HelloComponent implements OnInit {
     console.log('HelloComponent.del() аргумент id='+id)
   }
 
+
   ngOnInit(): void {
   }
 

@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
+import {HelloService} from '../services/hello.service';
+import {TodoItem} from '../model/todo.item';
+
 
 @Component({
   selector: 'app-title-detail',
@@ -9,11 +12,21 @@ import {ActivatedRoute} from '@angular/router';
 export class TitleDetailComponent implements OnInit {
 
   id: number;
+  title: string;
+  item: TodoItem;
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(private helloService: HelloService,private route: ActivatedRoute) { }
+
+  update(id:number, title:string){
+    this.helloService.update(id, title);
+  }
 
   ngOnInit(): void {
+    console.log('todo', HelloService.todo);
     this.id = +this.route.snapshot.paramMap.get('id');
+    this.item = this.helloService.getItem(this.id);
+    console.log('item=',this.item, this.id);
+    this.title = this.item.title;
   }
 
 }

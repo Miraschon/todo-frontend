@@ -6,6 +6,7 @@ import { HelloComponent } from './hello/hello.component';
 import {FormsModule} from '@angular/forms';
 import { TitleDetailComponent } from './title-detail/title-detail.component';
 import { AppRoutingModule } from './app-routing.module';
+import {HelloService} from './services/hello.service';
 
 @NgModule({
   declarations: [

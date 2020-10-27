@@ -5,23 +5,46 @@ import {TodoItem} from '../model/todo.item';
   providedIn: 'root'
 })
 export class HelloService {
-
-  private todo: TodoItem[] = [];
+   
+  static todo: TodoItem[];
 
   public lastId: number = 0;
 
   del(id:number) : void {
-    this.todo = this.todo.filter(h => h.id !== id);
+    HelloService.todo = HelloService.todo.filter(h => h.id !== id);
+  }
+
+  update(id:number, title:string): void {
+    for (let i=0; i<HelloService.todo.length; ++i) {
+      const t = HelloService.todo[i];
+      if(t.id == id){
+        t.title = title;
+      }
+    }
   }
 
   addTodo(item:TodoItem) : void {
-    this.todo.push(item);
+    HelloService.todo.push(item);
   }
 
   getTodo(): TodoItem[] {
-    return this.todo;
+    return HelloService.todo;
   }
 
+  getItem(id:number) : TodoItem{
+    console.log('getItem', id, HelloService.todo.length);
+    for (let i = 0; i < HelloService.todo.length; ++i) {
+      const t = HelloService.todo[i];
+      console.log('t',t,id);
+      if(t.id == id) {
+        return t;
+      }
+    }
+    return undefined;
+  }
 
-  constructor() { }
+  constructor() {
+    if(!HelloService.todo)
+      HelloService.todo = [];
+  }
 }

@@ -1,9 +1,9 @@
 <h1>{{getTitle()}}</h1>
-<button class="add" (click)="addTodo()">Update</button><br>
+<button class="add" (click)="addTodo()">Add</button><br>
 <input [(ngModel)]="title"/><br>
 <div class="list" *ngFor="let item of getTodo()">
     {{item.title}}
     <button class="delete" (click)="del(item.id)">Delete</button><br>
-    <a routerLink="/title/{{item.id}}">title-detail</a>
+  <a routerLink="/title/{{item.id}}"><button class="edit" (click)="del(item.id)">Edit</button></a>
 </div>
 
