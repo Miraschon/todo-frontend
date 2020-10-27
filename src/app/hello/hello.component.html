@@ -4,6 +4,6 @@
 <div class="list" *ngFor="let item of getTodo()">
     {{item.title}}
     <button class="delete" (click)="del(item.id)">Delete</button><br>
-  <a routerLink="/title/{{item.id}}"><button class="edit" (click)="del(item.id)">Edit</button></a>
+  <a routerLink="/title/{{item.id}}"><button class="edit">Edit</button></a>
 </div>
 

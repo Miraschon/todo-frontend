@@ -22,7 +22,6 @@ export class TitleDetailComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log('todo', HelloService.todo);
     this.id = +this.route.snapshot.paramMap.get('id');
     this.item = this.helloService.getItem(this.id);
     console.log('item=',this.item, this.id);

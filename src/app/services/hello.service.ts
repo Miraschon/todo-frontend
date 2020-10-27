@@ -5,36 +5,44 @@ import {TodoItem} from '../model/todo.item';
   providedIn: 'root'
 })
 export class HelloService {
-   
-  static todo: TodoItem[];
+
+  todo: TodoItem[] = [];
 
   public lastId: number = 0;
 
   del(id:number) : void {
-    HelloService.todo = HelloService.todo.filter(h => h.id !== id);
+    this.todo = this.todo.filter(h => h.id !== id);
+    localStorage.setItem('todo',JSON.stringify(this.todo));
   }
 
   update(id:number, title:string): void {
-    for (let i=0; i<HelloService.todo.length; ++i) {
-      const t = HelloService.todo[i];
+    for (let i=0; i<this.todo.length; ++i) {
+      const t = this.todo[i];
       if(t.id == id){
         t.title = title;
       }
     }
+    localStorage.setItem('todo',JSON.stringify(this.todo));
   }
 
   addTodo(item:TodoItem) : void {
-    HelloService.todo.push(item);
+    this.todo.push(item);
+    console.log('addTodo', this);
+    localStorage.setItem('todo',JSON.stringify(this.todo));
   }
 
   getTodo(): TodoItem[] {
-    return HelloService.todo;
+   /*
+
+    }*/
+    return this.todo;
   }
 
   getItem(id:number) : TodoItem{
-    console.log('getItem', id, HelloService.todo.length);
-    for (let i = 0; i < HelloService.todo.length; ++i) {
-      const t = HelloService.todo[i];
+    this.getFromLocalStorage();
+    console.log('getItem', id, this.todo.length);
+    for (let i = 0; i < this.todo.length; ++i) {
+      const t = this.todo[i];
       console.log('t',t,id);
       if(t.id == id) {
         return t;
@@ -44,7 +52,12 @@ export class HelloService {
   }
 
   constructor() {
-    if(!HelloService.todo)
-      HelloService.todo = [];
+  }
+
+  private getFromLocalStorage() {
+    const todoStr = localStorage.getItem('todo');
+    if (todoStr) {
+      this.todo = JSON.parse(todoStr);
+    }
   }
 }
