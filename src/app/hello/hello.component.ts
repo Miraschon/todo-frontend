@@ -1,38 +1,47 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {HelloService} from '../services/hello.service';
 import {TodoItem} from '../model/todo.item';
 
 @Component({
-  selector: 'hello',
-  templateUrl: './hello.component.html',
-  styleUrls: ['./hello.component.scss']
+    selector: 'hello',
+    templateUrl: './hello.component.html',
+    styleUrls: ['./hello.component.scss']
 })
 export class HelloComponent implements OnInit {
 
-  title: string = 'text';
+    title: string = 'text';
+    todos: TodoItem[] = [];
 
-  constructor(private helloService: HelloService) { }
+    constructor(private helloService: HelloService) {
+    }
 
-  getTitle() {
-    return "Todo List";
-  }
+    getTitle() {
+        return 'Todo List';
+    }
 
-  addTodo(): void {
-    this.helloService.lastId++;
-    this.helloService.addTodo(new TodoItem(this.helloService.lastId, this.title));
-  }
+    addTodo(): void {
+        this.helloService.lastId++;
+        this.helloService.addTodo(new TodoItem(this.helloService.lastId, this.title));
+    }
 
-  getTodo():  TodoItem[] {
-    return this.helloService.getTodo();
-  }
+    getTodo(): void {
+        this.helloService.getTodo()
+            .pipe()
+            .subscribe(todos => {
+                this.todos = todos;
+            }, error => {
 
-  del(id:number) {
-    this.helloService.del(id);
-    console.log('HelloComponent.del() аргумент id='+id)
-  }
+            });
+    }
+
+    del(id: number) {
+        this.helloService.del(id);
+        console.log('HelloComponent.del() аргумент id=' + id);
+    }
 
 
-  ngOnInit(): void {
-  }
+    ngOnInit(): void {
+        this.getTodo();
+    }
 
 }

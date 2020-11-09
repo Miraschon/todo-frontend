@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import {TodoItem} from '../model/todo.item';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import {Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -31,10 +33,12 @@ export class HelloService {
     localStorage.setItem('todo',JSON.stringify(this.todo));
   }
 
-  getTodo(): TodoItem[] {
+  getTodo(): Observable<TodoItem[]> {
     this.getFromLocalStorage();
-    return this.todo;
+    return this.http.get<TodoItem[]>('http://localhost:8080/api/list');
   }
+
+
 
   getItem(id:number) : TodoItem{
     this.getFromLocalStorage();
@@ -49,7 +53,7 @@ export class HelloService {
     return undefined;
   }
 
-  constructor() {
+  constructor(private http: HttpClient) {
   }
 
   private getFromLocalStorage() {
