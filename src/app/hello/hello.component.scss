@@ -1,0 +1,44 @@
+.all{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.framed{
+  border: 2px solid black;
+  border-radius: 5px;
+  padding: 20px;
+
+  background: rgba(0, 153, 255, 0.3);
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+input[type="text"]
+{
+  border-radius: 5px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);;
+  font-size:20px;
+}
+.effect-10 ~ .focus-bg{
+  position: absolute; left: 0; top: 0; width: 100%; height: 100%; background-color: #ededed; opacity: 0; transition: 0.5s; z-index: -1;
+}
+
+.button {
+  color : rgb(49, 46, 46);
+  background-color: rgba(248, 248, 250, 0.96);
+  border-radius: 10px 10px 10px 10px;
+  font-size: 20px;
+}
+.button:not([disabled]):hover {
+  background-color: rgba(107, 103, 91, 0.96);
+  color: white;
+}
+.button[disabled] {
+  color : rgb(187, 187, 187);
+  background-color: rgba(230, 230, 229, 0.96);
+}
+.list{
+  text-shadow: 2px 2px 4px #000000;
+  color: ghostwhite;
+  font-size: 22px;
+}

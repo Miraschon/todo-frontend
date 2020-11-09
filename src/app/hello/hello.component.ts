@@ -14,7 +14,7 @@ export class HelloComponent implements OnInit {
   constructor(private helloService: HelloService) { }
 
   getTitle() {
-    return "todo list";
+    return "Todo List";
   }
 
   addTodo(): void {

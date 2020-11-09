@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {HelloService} from '../services/hello.service';
 import {TodoItem} from '../model/todo.item';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -15,10 +16,11 @@ export class TitleDetailComponent implements OnInit {
   title: string;
   item: TodoItem;
 
-  constructor(private helloService: HelloService,private route: ActivatedRoute) { }
+  constructor(private helloService: HelloService,private route: ActivatedRoute, private router: Router) { }
 
   update(id:number, title:string){
     this.helloService.update(id, title);
+    this.router.navigateByUrl('/home');
   }
 
   ngOnInit(): void {

@@ -1,3 +1,7 @@
-<p>title-detail works {{id}}</p>
-<input [(ngModel)]="title"/><br>
-<button class="update" (click)="update(item.id, item.title)">Update</button><br>
+
+<div class="all">
+  <div class="framed">
+<input class="effect-10" type="text" placeholder="Placeholder Text" [(ngModel)]="title"/><br>
+<button class="button" (click)="update(item.id, title)">Update</button>
+</div>
+</div>

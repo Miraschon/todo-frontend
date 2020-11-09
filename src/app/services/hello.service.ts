@@ -17,12 +17,12 @@ export class HelloService {
 
   update(id:number, title:string): void {
     for (let i=0; i<this.todo.length; ++i) {
-      const t = this.todo[i];
-      if(t.id == id){
-        t.title = title;
+      if(this.todo[i].id == id){
+        this.todo[i].title = title;
       }
     }
     localStorage.setItem('todo',JSON.stringify(this.todo));
+    console.log('todo', this.todo, title);
   }
 
   addTodo(item:TodoItem) : void {
@@ -32,9 +32,7 @@ export class HelloService {
   }
 
   getTodo(): TodoItem[] {
-   /*
-
-    }*/
+    this.getFromLocalStorage();
     return this.todo;
   }
 

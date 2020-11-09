@@ -1,9 +1,16 @@
-<h1>{{getTitle()}}</h1>
-<button class="add" (click)="addTodo()">Add</button><br>
-<input [(ngModel)]="title"/><br>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<div class="all">
+  <h1>{{getTitle()}}</h1>
+  <div class="framed">
+<input class="effect-10" type="text" placeholder="Placeholder Text" [(ngModel)]="title"/>
+  <button class="button" (click)="addTodo()">Add</button>
+
+
 <div class="list" *ngFor="let item of getTodo()">
     {{item.title}}
-    <button class="delete" (click)="del(item.id)">Delete</button><br>
-  <a routerLink="/title/{{item.id}}"><button class="edit">Edit</button></a>
+  <a routerLink="/title/{{item.id}}"><button class="button"><i class="fa fa-pencil"></i></button></a>
+  <button class="button" (click)="del(item.id)"><i class="fa fa-close"></i></button>
+</div>
+</div>
 </div>
 
