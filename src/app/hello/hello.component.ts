@@ -20,8 +20,11 @@ export class HelloComponent implements OnInit {
     }
 
     addTodo(): void {
-        this.helloService.lastId++;
-        this.helloService.addTodo(new TodoItem(this.helloService.lastId, this.title));
+        this.helloService.addTodo(new TodoItem(null, this.title))
+            .pipe()
+            .subscribe((newItem) => {
+                this.getTodo();
+            });
     }
 
     getTodo(): void {

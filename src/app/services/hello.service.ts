@@ -27,18 +27,15 @@ export class HelloService {
     console.log('todo', this.todo, title);
   }
 
-  addTodo(item:TodoItem) : void {
+  addTodo(item:TodoItem): Observable<TodoItem>{
     this.todo.push(item);
-    console.log('addTodo', this);
-    localStorage.setItem('todo',JSON.stringify(this.todo));
+    return this.http.post<any>('http://localhost:8080/api/add', item);
   }
 
   getTodo(): Observable<TodoItem[]> {
     this.getFromLocalStorage();
     return this.http.get<TodoItem[]>('http://localhost:8080/api/list');
   }
-
-
 
   getItem(id:number) : TodoItem{
     this.getFromLocalStorage();
