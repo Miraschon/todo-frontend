@@ -19,15 +19,16 @@ export class TitleDetailComponent implements OnInit {
   constructor(private helloService: HelloService,private route: ActivatedRoute, private router: Router) { }
 
   update(id:number, title:string){
-    this.helloService.update(id, title);
-    this.router.navigateByUrl('/home');
+    this.helloService.update(new TodoItem(id, title)).pipe()
+        .subscribe(()=>this.router.navigateByUrl('/home'));
   }
 
   ngOnInit(): void {
     this.id = +this.route.snapshot.paramMap.get('id');
-    this.item = this.helloService.getItem(this.id);
-    console.log('item=',this.item, this.id);
-    this.title = this.item.title;
+    this.helloService.getItem(this.id).pipe()
+        .subscribe((item)=>{
+          this.item=item;
+          this.title = this.item.title;
+        });
   }
-
 }

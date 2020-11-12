@@ -38,8 +38,10 @@ export class HelloComponent implements OnInit {
     }
 
     del(id: number) {
-        this.helloService.del(id);
-        console.log('HelloComponent.del() аргумент id=' + id);
+        this.helloService.del(id).pipe()
+            .subscribe(()=>{
+                this.getTodo();
+            })
     }
 
 
